@@ -2,6 +2,7 @@ import  { useState } from "react";
 import EarthCanvas from "./EarthCanvas";
 import StarrySky from "../utils/StarrySky";
 import { useNavigate } from "react-router-dom";
+import { api } from "../const";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,47 +11,37 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
   
-    // Prepare the data to send to the backend
-    const requestData = {
-      email,
-      password,
-      role,
-    };
+    try {
+      // Prepare the data to send to the backend
+      const requestData = {
+        email,
+        password,
+        role,
+      };
   
-    // Determine which API to call based on the role
-    const apiUrl = role === "Manager"
-      ? '/api/auth/managerSignin'   // Manager signup API
-      : '/api/auth/clientSignin';   // Client signup API
+      // Determine which API to call based on the role
+      const apiUrl = role === "Manager"
+        ? '/api/auth/managerSignin'  // Manager login API
+        : '/api/auth/clientSignin';  // Client login API
   
-    // Make the fetch call to the appropriate API
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestData),  // Send the email, password, and role data
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Login response:', data);
-        
-        // Assuming the backend sends a success message, navigate to the dashboard
-        if (data.success) {
-          localStorage.setItem("role", role);  // Store the role in localStorage
-          navigate('/dashboard');  // Redirect to dashboard
-        } else {
-          console.error(data.message);  // Handle error if the backend returns a message
-        }
-      })
-      .catch((error) => {
-        console.error('Error during submission:', error);
-      });
-
+      // Make the API call using Axios
+      const response = await api.post(apiUrl, requestData);
+  
+      console.log('Login response:', response.data);
+  
+      // Assuming the backend sends a success message, navigate to the dashboard
+      if (response.status === 200) {
+        localStorage.setItem("role", role);  // Store the role in localStorage
+        navigate('/dashboard');  // Redirect to dashboard
+      } else {
+      }
+    } catch (error) {
+      console.error('Error during submission:', error.response?.data || error.message);
+    }
   };
-  
 
   return (
     <div className="bg-black w-screen h-screen flex">
