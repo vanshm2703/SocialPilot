@@ -31,6 +31,7 @@ const Login = () => {
       const response = await api.post(apiUrl, requestData);
   
       console.log('Login response:', response.data);
+      localStorage.setItem("clientId", response.data._id);
   
       // Assuming the backend sends a success message, navigate to the dashboard
       if (response.status === 200) {

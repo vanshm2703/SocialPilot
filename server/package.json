@@ -18,6 +18,7 @@
     "cron": "^3.5.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "firebase": "^11.2.0",
     "got": "^14.4.5",
     "groq-sdk": "^0.12.0",
     "instagram-private-api": "^1.46.1",

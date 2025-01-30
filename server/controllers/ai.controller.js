@@ -4,7 +4,7 @@ dotenv.config();
 import Groq from 'groq-sdk';
 
 // Initialize Groq SDK with API Key from .env
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const groq = new Groq({ apiKey: "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" });
 
 const generateContent = async (platform, msg) => {
     const prompts = {

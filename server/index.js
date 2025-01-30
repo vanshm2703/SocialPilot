@@ -5,11 +5,15 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.route.js';
 import managerRoutes from './routes/manager.routes.js'
+import clientRoutes from './routes/client.routes.js'
+import taskRoutes from './routes/task.routes.js'
 import generateRoutes from './routes/ai.route.js'
+import requestRoutes from './routes/request.route.js'
 
 dotenv.config();
 
 const app = express();
+
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("Connected to MongoDB");
@@ -29,7 +33,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/manager',managerRoutes)
+app.use('/api/client',clientRoutes)
+app.use('/api/manager',managerRoutes)
+app.use('/api/task',taskRoutes)
 app.use('/api/generate', generateRoutes);
+app.use('/api/request', requestRoutes);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;

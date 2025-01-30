@@ -5,30 +5,38 @@ const previousHistory = new mongoose.Schema(
     clientId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref:'Client'
+      ref: 'Client',
     },
     rating: {
       type: String,
       required: true,
     },
-    serviceDiscription:{
+    serviceDescription: {
       type: String,
       required: true,
     },
-    serviceCost:{
-      type: Double,
+    serviceCost: {
+      type: Number,
       required: true,
-    } 
-  }
-)
-
+    },
+  },
+  { _id: false } // अगर हर एंट्री का अलग _id नहीं चाहिए
+);
 
 const managerInfo = new mongoose.Schema(
   {
-    userId: {
+    manager: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref:'Manager'
+      ref: 'Manager',
+    },
+    managerUsername: {
+      type: String,
+      required: true,
+    },
+    managerEmail: {
+      type: String,
+      required: true,
     },
     services: {
       type: [String],
@@ -38,19 +46,19 @@ const managerInfo = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
     clientsHistory: {
-      type: previousHistory,
-      default: {},
+      type: [previousHistory], 
+      default: [],
     },
-    projectStatus:{
-      enum:['completed','inProgress','notStarted'] ,
-      required: true
-    }
+    projectStatus: {
+      type: String, // ✅ सही किया गया
+      enum: ['completed', 'inProgress', 'notStarted'],
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const ManagerInfo = mongoose.model('ManagerInfo', managerInfo);
+const ManagerInfo = mongoose.model('MangerInfo', managerInfo);
 
 export default ManagerInfo;
