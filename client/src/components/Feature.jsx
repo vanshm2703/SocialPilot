@@ -1,6 +1,8 @@
 import React from 'react';
 import LogoWall from '../assets/LogoWall';
 import SpotlightCard from '../assets/SpotlightCard'; // Ensure you have the SpotlightCard component correctly imported
+import { Briefcase,Eye, Zap } from "lucide-react";
+
 
 const Feature = () => {
   const logoImgs = [
@@ -52,24 +54,34 @@ const Feature = () => {
 
         <div className="flex justify-between mt-20 gap-x-6 cursor-default"> 
           <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-            <div className="border  border-gray-500 rounded-lg p-8 max-w-sm w-screen h-80 text-center">
-              <h3 className="text-2xl relative top-1/2 font-semibold">Dual Expertise</h3>
-              <p className="text-sm pt-5 relative text-gray-300 top-1/2">Agency & In-house - We've been on both sides of the hiring table, so we know how to find the perfect fit for your company.</p>
-            </div>
+          <div className="border border-gray-500 rounded-lg p-8 max-w-sm w-screen h-80 text-center relative">
+             <Briefcase className="scale-150 w-10 h-10 mx-auto text-gray-300" /> {/* Icon Added */}
+             <h3 className="text-2xl font-semibold mt-4">Dual Expertise</h3>
+            <p className="text-sm pt-5 text-gray-300">
+    Agency & In-house - We've been on both sides of the hiring table, 
+    so we know how to find the perfect fit for your company.
+         </p>
+         </div>
           </SpotlightCard>
 
           <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-            <div className="border border-gray-500 rounded-lg p-8 max-w-sm w-screen h-80 text-center">
-              <h3 className="text-2xl relative top-1/2 font-semibold">Fully Transparent</h3>
-              <p className="text-sm pt-5 relative text-gray-300 top-1/2">Clean and clear. This is what you can expect from us and how it should always be.</p>
-            </div>
+          <div className="border border-gray-500 rounded-lg p-8 max-w-sm w-screen h-80 text-center relative">
+  <Eye className="scale-150 w-10 h-10 mx-auto text-gray-300" /> {/* Icon Added */}
+  <h3 className="text-2xl font-semibold mt-4">Fully Transparent</h3>
+  <p className="text-sm pt-5 text-gray-300">
+    Clean and clear. This is what you can expect from us and how it should always be.
+  </p>
+</div>
           </SpotlightCard>
 
           <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(0, 229, 255, 0.2)">
-            <div className="border border-gray-500 rounded-lg p-8 max-w-sm w-screen h-80 text-center">
-              <h3 className="text-2xl relative top-1/2 font-semibold">Lightning Speed</h3>
-              <p className="text-sm pt-5 relative text-gray-300 top-1/2">Speed wins in the talent market. Don't worry; we get things done fast.</p>
-            </div>
+          <div className="border border-gray-500 rounded-lg p-8 max-w-sm w-screen h-80 text-center relative">
+  <Zap className="w-10 h-10 mx-auto text-yellow-400" /> {/* Lightning Icon Added */}
+  <h3 className="text-2xl font-semibold mt-4">Lightning Speed</h3>
+  <p className="text-sm pt-5 text-gray-300">
+    Speed wins in the talent market. Don't worry; we get things done fast.
+  </p>
+</div>
           </SpotlightCard>
         </div>
       </div>
